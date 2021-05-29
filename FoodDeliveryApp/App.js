@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Home, Restaurant, OrderDelivery} from './screens/index';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './navigation/tabs';
 import { Provider } from 'react-redux';
 import themeStore from './redux/store';
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
+	useEffect(() => {
+		SplashScreen.hide();
+	},[])
     const Stack = createStackNavigator();
 	return(
 		<Provider store = {themeStore}>

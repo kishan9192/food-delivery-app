@@ -8,6 +8,7 @@ import {
   Switch,
   FlatList,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import themeAction from '../redux/actions/themeActions'
 import { connect } from 'react-redux';
@@ -614,6 +615,12 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
       backgroundColor: darkTheme == true ? '#212121' : COLORS.lightGray4, 
       flex:1
     }}>
+      <StatusBar
+        animated={false}
+        backgroundColor={darkTheme?'#212121':COLORS.lightGray4}
+        barStyle={darkTheme ? 'light-content' : 'dark-content'}
+        // showHideTransition={statusBarTransition}
+        hidden={false} />
       {renderHeader()}
       {renderMainCategories()}
       {renderRestaurantList()}
