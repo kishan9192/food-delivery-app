@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export const back = require("../assets/icons/back.png");
 export const car = require("../assets/icons/car.png");
 export const cutlery = require("../assets/icons/cutlery.png");

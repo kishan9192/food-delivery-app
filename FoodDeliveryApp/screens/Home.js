@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+/* eslint-disable quotes */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-native/no-inline-styles */
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -10,16 +13,16 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import themeAction from '../redux/actions/themeActions'
-import { connect } from 'react-redux';
+import themeAction from '../redux/actions/themeActions';
+
+import {connect} from 'react-redux';
 import {COLORS, FONTS, icons, images, SIZES} from '../constants';
 import ToggleButton from '../components/toggleButton';
 
-const Home = ({ navigation, darkTheme, toggleMode }) => {
-
-  useEffect(()=> {
-    console.log("Dark Theme = ", darkTheme)
-  }, [darkTheme])
+const Home = ({navigation, darkTheme, toggleMode}) => {
+  useEffect(() => {
+    console.log('Dark Theme = ', darkTheme);
+  }, [darkTheme]);
 
   // Dummy Datas
 
@@ -342,12 +345,11 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
     initialCurrentLocation,
   );
 
-  
-  const getCategoryById = (categoryId) => {
-    let category = categories.filter(item => item.id == categoryId);
-    console.log("Category = ", category);
-    return category.length > 0 ? category[0].name : ""; 
-  }
+  const getCategoryById = categoryId => {
+    let category = categories.filter(item => item.id === categoryId);
+    console.log('Category = ', category);
+    return category.length > 0 ? category[0].name : '';
+  };
 
   const renderSelectedCategory = category => {
     console.log('category = ', category);
@@ -378,7 +380,7 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
             style={{
               height: 30,
               width: 30,
-              tintColor: darkTheme ? COLORS.white : COLORS.black
+              tintColor: darkTheme ? COLORS.white : COLORS.black,
             }}
           />
         </TouchableOpacity>
@@ -386,16 +388,21 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <View
             style={{
-              backgroundColor: darkTheme? '#222831' : COLORS.lightGray3,
+              backgroundColor: darkTheme ? '#222831' : COLORS.lightGray3,
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: SIZES.radius,
               height: '90%',
               width: '70%',
-              borderColor:COLORS.primary,
-              borderWidth:2
+              borderColor: COLORS.primary,
+              borderWidth: 2,
             }}>
-            <Text style={{...FONTS.h3, fontWeight: '700', color: darkTheme ? COLORS.white : COLORS.black}}>
+            <Text
+              style={{
+                ...FONTS.h3,
+                fontWeight: '700',
+                color: darkTheme ? COLORS.white : COLORS.black,
+              }}>
               {currentLocation.streetName}
             </Text>
           </View>
@@ -413,7 +420,7 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
             style={{
               height: 30,
               width: 30,
-              tintColor: darkTheme ? COLORS.white : COLORS.black
+              tintColor: darkTheme ? COLORS.white : COLORS.black,
             }}
           />
         </TouchableOpacity>
@@ -429,7 +436,7 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
             padding: SIZES.padding,
             paddingBottom: SIZES.padding * 2,
             backgroundColor:
-              selectedCategory?.id == item.id ? COLORS.primary : COLORS.white,
+              selectedCategory?.id === item.id ? COLORS.primary : COLORS.white,
             borderRadius: SIZES.radius,
             alignItems: 'center',
             justifyContent: 'center',
@@ -445,7 +452,7 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor:
-                selectedCategory?.id == item.id
+                selectedCategory?.id === item.id
                   ? COLORS.white
                   : COLORS.lightGray3,
             }}>
@@ -462,7 +469,7 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
             style={{
               marginTop: SIZES.padding,
               color:
-                selectedCategory?.id == item.id ? COLORS.white : COLORS.black,
+                selectedCategory?.id === item.id ? COLORS.white : COLORS.black,
               ...FONTS.body5,
             }}>
             {item.name}
@@ -472,12 +479,19 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
     };
     return (
       <View style={{paddingLeft: SIZES.padding * 2}}>
-        <View style = {{flexDirection:'row'}}>
-          <Text style={{...FONTS.h1, fontWeight: '700', color: darkTheme ? COLORS.white : COLORS.black}}>Main</Text>
-          <View style = {{flex: 0.95}}>
+        <View style={{flexDirection: 'row'}}>
+          <Text
+            style={{
+              ...FONTS.h1,
+              fontWeight: '700',
+              color: darkTheme ? COLORS.white : COLORS.black,
+            }}>
+            Main
+          </Text>
+          <View style={{flex: 0.95}}>
             <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={darkTheme == true ? "#f5dd4b" : "#f4f3f4"}
+              trackColor={{false: '#767577', true: '#81b0ff'}}
+              thumbColor={darkTheme === true ? '#f5dd4b' : '#f4f3f4'}
               ios_backgroundColor="#3e3e3e"
               onValueChange={toggleMode}
               value={darkTheme}
@@ -485,7 +499,14 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
           </View>
         </View>
 
-        <Text style={{...FONTS.h1, fontWeight: '700', color: darkTheme ? COLORS.white : COLORS.black}}>Categories</Text>
+        <Text
+          style={{
+            ...FONTS.h1,
+            fontWeight: '700',
+            color: darkTheme ? COLORS.white : COLORS.black,
+          }}>
+          Categories
+        </Text>
 
         <FlatList
           data={categories}
@@ -501,15 +522,17 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
 
   const renderRestaurantList = () => {
     const renderItem = ({item}) => {
+      console.log('Item navigated = ', item);
       return (
         <TouchableOpacity
           style={{marginBottom: SIZES.padding * 2}}
-          onPress = {()=> navigation.navigate("Restaurant",{
-            item,
-            currentLocation
-          })}
-        >
-          <View style = {{marginBottom:SIZES.padding}}>
+          onPress={() =>
+            navigation.navigate('Restaurant', {
+              item,
+              currentLocation,
+            })
+          }>
+          <View style={{marginBottom: SIZES.padding}}>
             <Image
               source={item.photo}
               resizeMode="cover"
@@ -519,7 +542,7 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
                 borderRadius: SIZES.radius,
               }}
             />
-            
+
             {/* Duration View */}
             <View
               style={{
@@ -542,57 +565,94 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
           </View>
 
           {/* Item Name */}
-          <Text style = {{fontWeight:'700', marginLeft:6, ...FONTS.body2, color: darkTheme ? COLORS.white : COLORS.black}}>{item.name}</Text>
-          
+          <Text
+            style={{
+              fontWeight: '700',
+              marginLeft: 6,
+              ...FONTS.body2,
+              color: darkTheme ? COLORS.white : COLORS.black,
+            }}>
+            {item.name}
+          </Text>
+
           {/* Rating */}
-          <View style = {{paddingTop:SIZES.padding * 0.6, flexDirection:'row', marginLeft:6}}>
-              <Image
-                source = {icons.star}
-                style = {{
-                    height:20,
-                    width:20,
-                    tintColor: COLORS.primary,
-                    marginRight:10
-                }}
-              />
-              <Text style = {{fontWeight:'700', ...FONTS.body3, color: darkTheme ? COLORS.white : COLORS.black}}>{item.rating}</Text>
-              
-              {/* Categories */}
-          <View style = {{
-            flexDirection:'row',
-            marginLeft:10
-          }}>
-            {
-              item.categories.map((categoryId) => {
+          <View
+            style={{
+              paddingTop: SIZES.padding * 0.6,
+              flexDirection: 'row',
+              marginLeft: 6,
+            }}>
+            <Image
+              source={icons.star}
+              style={{
+                height: 20,
+                width: 20,
+                tintColor: COLORS.primary,
+                marginRight: 10,
+              }}
+            />
+            <Text
+              style={{
+                fontWeight: '700',
+                ...FONTS.body3,
+                color: darkTheme ? COLORS.white : COLORS.black,
+              }}>
+              {item.rating}
+            </Text>
+
+            {/* Categories */}
+            <View
+              style={{
+                flexDirection: 'row',
+                marginLeft: 10,
+              }}>
+              {item.categories.map(categoryId => {
                 return (
-                  <View style = {{
-                    flexDirection:'row'
-                  }}
-                  key = {categoryId}
-                  >
-                    <Text style = {{fontWeight:'500', ...FONTS.body3, color: darkTheme ? COLORS.white : COLORS.black}}>{getCategoryById(categoryId)}</Text>
-                    <Text style = {{fontWeight:'bold', color: darkTheme ? COLORS.white : COLORS.black}}> . </Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}
+                    key={categoryId}>
+                    <Text
+                      style={{
+                        fontWeight: '500',
+                        ...FONTS.body3,
+                        color: darkTheme ? COLORS.white : COLORS.black,
+                      }}>
+                      {getCategoryById(categoryId)}
+                    </Text>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        color: darkTheme ? COLORS.white : COLORS.black,
+                      }}>
+                      {' '}
+                      .{' '}
+                    </Text>
                   </View>
-                )
-              })
-            }
-            <View style = {{flexDirection:'row'}}>
-              {
-                [1,2,3].map((priceRating) => {
+                );
+              })}
+              <View style={{flexDirection: 'row'}}>
+                {[1, 2, 3].map(priceRating => {
                   return (
                     <Text
-                      key = {priceRating}
-                      style = {{
-                        fontWeight:'500', 
+                      key={priceRating}
+                      style={{
+                        fontWeight: '500',
                         ...FONTS.body4,
-                        color: (priceRating <= item.priceRating) ? (darkTheme ? COLORS.white : COLORS.black) : COLORS.darkgray
-                      }}
-                    >₹</Text>
-                  )
-                })
-              }
+                        color:
+                          priceRating <= item.priceRating
+                            ? darkTheme
+                              ? COLORS.white
+                              : COLORS.black
+                            : COLORS.darkgray,
+                      }}>
+                      ₹
+                    </Text>
+                  );
+                })}
+              </View>
             </View>
-          </View>
           </View>
         </TouchableOpacity>
       );
@@ -611,16 +671,18 @@ const Home = ({ navigation, darkTheme, toggleMode }) => {
   };
   // #010101 222831
   return (
-    <SafeAreaView style={{ 
-      backgroundColor: darkTheme == true ? '#212121' : COLORS.lightGray4, 
-      flex:1
-    }}>
+    <SafeAreaView
+      style={{
+        backgroundColor: darkTheme === true ? '#212121' : COLORS.lightGray4,
+        flex: 1,
+      }}>
       <StatusBar
         animated={false}
-        backgroundColor={darkTheme?'#212121':COLORS.lightGray4}
+        backgroundColor={darkTheme ? '#212121' : COLORS.lightGray4}
         barStyle={darkTheme ? 'light-content' : 'dark-content'}
         // showHideTransition={statusBarTransition}
-        hidden={false} />
+        hidden={false}
+      />
       {renderHeader()}
       {renderMainCategories()}
       {renderRestaurantList()}
@@ -643,14 +705,14 @@ const Styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    darkTheme: state.dark
-  }
-}
-const mapDispatchToProps = (dispatch) => {
+    darkTheme: state.dark,
+  };
+};
+const mapDispatchToProps = dispatch => {
   return {
-    toggleMode: () => dispatch(themeAction())
-  }
-}
+    toggleMode: () => dispatch(themeAction()),
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
